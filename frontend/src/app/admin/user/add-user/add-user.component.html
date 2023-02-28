@@ -1,0 +1,196 @@
+<app-menu></app-menu>
+<div class="d-flex justify-content-center align-items-center vh-100">
+  <div class="w-50">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">Nouveau utilisateur</h4>
+      </div>
+      <div class="card-body">
+        <form
+          [formGroup]="userForm"
+          (ngSubmit)="onSubmitFormGroupe()"
+          *ngIf="userForm"
+        >
+          <div class="row">
+            <div class="col-md-6">
+              <label for="firstName">Prénom:</label>
+              <input
+                type="text"
+                [ngClass]="{
+                  'is-valid': validForm && !userForm.controls.firstName.errors,
+                  'is-invalid': validForm && userForm.controls.firstName.errors
+                }"
+                class="form-control"
+                id="firstName"
+                formControlName="firstName"
+                placeholder="Prénom"
+                name="firstName"
+                ngModel
+              />
+              <div class="invalid-feedback">Prénom obligatoire !</div>
+            </div>
+            <div class="col-md-6">
+              <label for="lastName">Nom:</label>
+              <input
+                type="text"
+                [ngClass]="{
+                  'is-valid': validForm && !userForm.controls.lastName.errors,
+                  'is-invalid': validForm && userForm.controls.lastName.errors
+                }"
+                class="form-control"
+                id="lastName"
+                formControlName="lastName"
+                placeholder="Nom"
+                name="lastName"
+                ngModel
+              />
+              <div class="invalid-feedback">Nom obligatoire !</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <label>Selectionner votre rôle</label>
+              <select
+                name="role"
+                class="form-select form-select-lg mb-3"
+                class="form-control"
+                id="role"
+                formControlName="role"
+                [ngClass]="{
+                  'is-valid': validForm && !userForm.controls.role.errors,
+                  'is-invalid': validForm && userForm.controls.role.errors
+                }"
+                name="role"
+                ngModel
+              >
+                <option>Abonne</option>
+                <option>Normal</option>
+              </select>
+              <div class="invalid-feedback">Rôle obligatoire !</div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <label for="address">Adresse: </label>
+              <input
+                type="String"
+                class="form-control"
+                id="address"
+                formControlName="address"
+                [ngClass]="{
+                  'is-valid': validForm && !userForm.controls.address.errors,
+                  'is-invalid': validForm && userForm.controls.address.errors
+                }"
+                placeholder="adresse"
+                name="address"
+                ngModel
+              />
+              <div
+                *ngIf="
+                  validForm && userForm.controls.address.hasError('required')
+                "
+                class="invalid-feedback"
+              >
+                Quantité de produit obligatoire !
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <label for="email">E-mail:</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                formControlName="email"
+                [ngClass]="{
+                  'is-valid': validForm && !userForm.controls.email.errors,
+                  'is-invalid': validForm && userForm.controls.email.errors
+                }"
+                placeholder="email"
+                name="email"
+                ngModel
+              />
+              <div class="invalid-feedback">email obligatoire !</div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <label for="">Mot de passe</label>
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                formControlName="password"
+                [ngClass]="{
+                  'is-valid': validForm && !userForm.controls.password.errors,
+                  'is-invalid': validForm && userForm.controls.password.errors
+                }"
+                placeholder="mot de passe"
+                name="password"
+                ngModel
+              />
+
+              <div
+                *ngIf="
+                  validForm && userForm.controls.password.hasError('required')
+                "
+                class="invalid-feedback"
+              >
+                Mot de passe obligatoire !
+              </div>
+              <div
+                *ngIf="validForm && userForm.controls.password.hasError('min')"
+                class="invalid-feedback"
+              >
+                Votre mot de passe doit contenir au mois 5 caractères !
+              </div>
+              <div
+                *ngIf="
+                  validForm && userForm.controls.password.hasError('pattern')
+                "
+                class="invalid-feedback"
+              >
+                Votre mot de passe doit contenir des lettres, des chiffres et
+                des symboles !
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <label for="">Confirmez votre mot de passe</label>
+              <input
+                type="password"
+                class="form-control"
+                id="pwd"
+                formControlName="password"
+                [ngClass]="{
+                  'is-valid': validForm && !userForm.controls.password.errors,
+                  'is-invalid': validForm && userForm.controls.password.errors
+                }"
+                placeholder="confirmer votre mot de passe"
+                name="pwd"
+                ngModel
+              />
+              <div class="invalid-feedback">mot de passe obligatoire !</div>
+              <div
+                *ngIf="userForm.value.password !== userForm.value.password"
+                class="invalid-feedback"
+              >
+                mot de passe non conformes !
+              </div>
+            </div>
+          </div>
+
+          <div class="card-footer mt-3">
+            <button type="submit" class="btn btn-primary pull-right">
+              Enregistrer
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

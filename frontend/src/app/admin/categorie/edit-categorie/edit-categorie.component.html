@@ -1,0 +1,48 @@
+<app-menu></app-menu>
+<div class="container mt-5 mb-5">
+  <div class="card mt-5">
+    <form
+      [formGroup]="categorieForm"
+      (ngSubmit)="update()"
+      *ngIf="categorieForm"
+    >
+      <div class="card">
+        <div class="card-body">
+          <div class="form-group">
+            <label for="nomCategorie">Catégorie:</label>
+            <input
+              type="text"
+              [ngClass]="{
+                'is-valid':
+                  validForm && !categorieForm.controls.nomCategorie.errors,
+                'is-invalid':
+                  validForm && categorieForm.controls.nomCategorie.errors
+              }"
+              class="form-control"
+              id="nomCategorie"
+              formControlName="nomCategorie"
+              placeholder="nomCategorie"
+              name="nomCategorie"
+              ngModel
+            />
+            <div class="invalid-feedback">nom de catégorie obligatoire !</div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-primary me-2">
+              Enregistrer modification
+            </button>
+            <button
+              class="btn btn-primary"
+              type="submit"
+              routerLink="/admin/categorie"
+            >
+              Liste des catégories
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

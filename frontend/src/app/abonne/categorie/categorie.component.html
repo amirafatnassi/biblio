@@ -1,0 +1,33 @@
+<app-menu></app-menu>
+<div class="container mt-5 mb-5">
+  <div class="card mt-5">
+    <div class="card-header">
+      <div class="card-title">
+        Liste des catégories
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table
+          class="table table-bordered table-hover"
+          *ngIf="categories.length > 0"
+        >
+          <thead>
+            <tr>
+              <th class="text-dark font-medium fs-4">Nom de la catégorie</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let c of categories">
+              <td class="fs-4">
+                <a routerLink="/abonne/categorie/show/{{ c._id }}">{{
+                  c.nomCategorie
+                }}</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

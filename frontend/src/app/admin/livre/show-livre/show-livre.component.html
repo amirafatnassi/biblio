@@ -1,0 +1,53 @@
+<app-menu></app-menu>
+<div class="container mt-5 mb-5">
+  <div class="card mt-5" *ngIf="livre">
+    <h5 class="card-header">
+      <legend><span class="fa fa-home"></span> {{ livre.titre }}</legend>
+    </h5>
+    <div class="card-body">
+      <p>
+        <u><b>Description:</b></u> {{ livre.description }}
+      </p>
+      <div class="row">
+        <p class="col-6">
+          <i class="fa fa-male" aria-hidden="true"></i>
+          <u><b>Auteur:</b></u> {{ livre.auteur }}
+        </p>
+      </div>
+      <div class="row">
+        <p class="col-6">
+          <i class="fa fa-male" aria-hidden="true"></i>
+          <u><b>Catégorie:</b></u> {{ livre.categorie }}
+        </p>
+      </div>
+      <div *ngIf="livre.contenu">
+        <p>Downloads: {{ downloads }}/5</p>
+        <p>
+          <button class="btn btn-link" (click)="downloadPdf(livre.contenu)" *ngIf="livre.contenu">Télécharger</button>
+        </p>
+      </div>
+
+      <div class="card-footer">
+        <div class="row">
+          <div class="col-6">
+            <button
+              class="btn rounded-circle btn-success"
+              routerLink="/admin/livre/update/{{ livre._id }}"
+            >
+              <i class="bi bi-pencil"></i>
+            </button>
+            <button
+              class="btn rounded-circle btn-danger"
+              (click)="suppLivre(livre._id)"
+            >
+              <i class="bi bi-trash"></i>
+            </button>
+          </div>
+          <div class="col-6">
+            <a routerLink="/admin/livre">Liste des livres</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

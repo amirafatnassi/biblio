@@ -1,0 +1,45 @@
+<app-menu></app-menu>
+<div class="container mt-5 mb-5">
+  <div class="card mt-5">
+    <div class="card" *ngIf="categorie">
+      <h5 class="card-header">
+        <legend>
+          <span class="fa fa-home"></span> {{ categorie.nomCategorie }}
+        </legend>
+      </h5>
+
+      <div class="card-body">
+        <p>
+          <u><b>Nom de la catégorie:</b></u> {{ categorie.nomCategorie }}
+        </p>
+        <p>
+          <b><u>Liste des livres:</u></b>
+        </p>
+        <div class="row" *ngFor="let livre of categorie.listeDesLivres">
+          {{ livre.titre }}
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="row">
+          <div class="col-6">
+            <button
+              class="btn rounded-circle btn-success"
+              routerLink="/admin/categorie/update/{{ categorie._id }}"
+            >
+              <i class="bi bi-pencil"></i>
+            </button>
+            <button
+              class="btn rounded-circle btn-danger"
+              (click)="suppCategorie(categorie._id)"
+            >
+              <i class="bi bi-trash"></i>
+            </button>
+          </div>
+          <div class="col-6">
+            <a routerLink="/admin/categorie">Liste des categories</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

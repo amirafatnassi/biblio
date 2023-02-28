@@ -1,0 +1,41 @@
+<app-menu></app-menu>
+<div class="container mt-5 mb-5">
+  <div class="card mt-5">
+    <div class="card-header">Liste des livres</div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table
+          class="table table-bordered table-hover"
+          *ngIf="livres.length > 0"
+        >
+          <thead>
+            <tr>
+              <th class="text-dark font-medium fs-4">Titre</th>
+              <th class="text-dark font-medium fs-4">Auteur</th>
+              <th class="text-dark font-medium fs-4">Catégorie</th>
+              <th class="text-dark font-medium fs-4">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let c of livres">
+              <td class="fs-4">
+                <a routerLink="/normal/livre/show/{{ c._id }}">{{ c.titre }}</a>
+              </td>
+              <td class="fs-4">{{ c.auteur }}</td>
+              <td class="fs-4">{{ c.categorie }}</td>
+              <td class="fs-4">
+                <p>
+                  {{
+                    c.description.length > 200
+                      ? (c.description | slice : 0 : 200) + "....."
+                      : c.description
+                  }}
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

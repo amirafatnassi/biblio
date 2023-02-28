@@ -1,0 +1,25 @@
+<app-menu></app-menu>
+<div class="container mt-5 mb-5">
+  <div class="card mt-5" *ngIf="categorie">
+    <h5 class="card-header">
+      <legend>
+        <span class="fa fa-home"></span> {{ categorie.nomCategorie }}
+      </legend>
+    </h5>
+
+    <div class="card-body">
+      <p>
+        <u><b>Nom de la catégorie:</b></u> {{ categorie.nomCategorie }}
+      </p>
+      <p>
+        <b><u>Liste des livres:</u></b>
+      </p>
+      <div class="row" *ngFor="let livre of categorie.listeDesLivres">
+        {{ livre.titre }}
+      </div>
+    </div>
+    <div class="card-footer">
+      <a routerLink="../../../categorie">Liste des categories</a>
+    </div>
+  </div>
+</div>

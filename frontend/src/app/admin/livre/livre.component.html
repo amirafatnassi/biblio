@@ -1,0 +1,84 @@
+<app-menu></app-menu>
+<div class="container mt-5 mb-5">
+  <div class="card mt-5">
+    <div class="card-header">
+      <div class="row">
+        <div class="col-8">Liste des livres</div>
+        <div class="col-4">
+          <button
+            class="btn rounded-pill btn-primary pull-right me-3"
+            routerLink="/admin/livre/add"
+          >
+            <i class="bi bi-plus"></i> Nouveau livre
+          </button>
+          <button
+            class="btn rounded-pill btn-primary pull-right"
+            (click)="exportexcel()"
+          >
+            Export to Excel
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table
+          class="table table-bordered table-hover"
+          *ngIf="livres.length > 0"
+          id="excel-table"
+        >
+          <thead>
+            <tr>
+              <th class="col-2 text-dark font-medium">Titre</th>
+              <th class="col-2 text-dark font-medium">Auteur</th>
+              <th class="col-2 text-dark font-medium">Catégorie</th>
+              <th class="col-5 text-dark font-medium">Description</th>
+              <th class="col-1 text-dark font-medium">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let c of livres">
+              <td class="col-2">
+                <a routerLink="/admin/livre/show/{{ c._id }}">{{ c.titre }}</a>
+              </td>
+              <td class="col-2">{{ c.auteur }}</td>
+              <td class="col-2">{{ c.categorie }}</td>
+              <td class="col-5">
+                <p>
+                  {{
+                    c.description.length > 200
+                      ? (c.description | slice : 0 : 200) + "....."
+                      : c.description
+                  }}
+                </p>
+              </td>
+              <td class="col">
+                <div class="d-flex justify-content-center">
+                  <button
+                    class="btn btn-secondary rounded-circle me-2"
+                    (click)="downloadPdf(c.contenu)" *ngIf="c.contenu"
+                  >
+                  <i class="bi bi-download"></i>
+                  </button>
+
+                  <button
+                    class="btn btn-success rounded-circle me-2"
+                    routerLink="/admin/livre/update/{{ c._id }}"
+                  >
+                    <i class="bi bi-pencil"></i>
+                  </button>
+                  <button
+                    class="btn rounded-circle btn-danger"
+                    (click)="suppLivre(c._id)"
+                  >
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

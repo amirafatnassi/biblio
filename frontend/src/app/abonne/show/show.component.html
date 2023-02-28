@@ -1,0 +1,43 @@
+<app-menu></app-menu>
+<div class="container mt-5 mb-5">
+  <div class="card mt-5" *ngIf="livre">
+    <h5 class="card-header">
+      <legend><span class="fa fa-home"></span> {{ livre.titre }}</legend>
+    </h5>
+
+    <div class="card-body">
+      <p>
+        <u><b>Description:</b></u> {{ livre.description }}
+      </p>
+      <div class="row">
+        <p class="col-6">
+          <i class="fa fa-male" aria-hidden="true"></i>
+          <u><b>Auteur:</b></u> {{ livre.auteur }}
+        </p>
+      </div>
+      <div class="row">
+        <p class="col-6">
+          <i class="fa fa-male" aria-hidden="true"></i>
+          <u><b>Catégorie:</b></u> {{ livre.categorie }}
+        </p>
+        <p>Downloads: {{ downloads }}/5</p>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="row">
+        <div class="col-6">
+          <button
+            *ngIf="livre.contenu"
+            class="btn btn-secondary rounded-circle me-2"
+            (click)="downloadPdf(livre.contenu)"
+          >
+            <i class="bi bi-download"></i>
+          </button>
+        </div>
+        <div class="col-6">
+          <a routerLink="../../../livre">Liste des livres</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

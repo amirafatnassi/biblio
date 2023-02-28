@@ -1,0 +1,56 @@
+<app-menu></app-menu>
+<div class="container mt-5 mb-5">
+  <div class="card mt-5">
+    <div class="card-header">
+      <div class="row">
+        <div class="col-8">Liste des catégories</div>
+        <div class="col-4">
+          <button
+            class="btn rounded-pill btn-primary pull-right"
+            routerLink="/admin/categorie/add"
+          >
+            <i class="bi bi-plus"></i> Nouvelle catégorie
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table
+          class="table table-bordered table-hover"
+          *ngIf="categories.length > 0"
+        >
+          <thead>
+            <tr>
+              <th class="text-dark font-medium fs-4">Nom de la catégorie</th>
+              <th class="text-dark font-medium fs-4">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let c of categories">
+              <td class="fs-4">
+                <a routerLink="/admin/categorie/show/{{ c._id }}">{{
+                  c.nomCategorie
+                }}</a>
+              </td>
+              <td>
+                <button
+                  class="btn rounded-circle btn-success me-2"
+                  routerLink="/admin/categorie/update/{{ c._id }}"
+                >
+                  <i class="bi bi-pencil"></i>
+                </button>
+                <button
+                  class="btn rounded-circle btn-danger"
+                  (click)="suppCategorie(c._id)"
+                >
+                  <i class="bi bi-trash"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
